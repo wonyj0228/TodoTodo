@@ -29,7 +29,22 @@
             <span><i class="fa-solid fa-arrow-rotate-right"></i></span>
           </div>
         </div>
-        <div class="main-box"></div>
+        <div class="main-box">
+          <form id="main-box__userName">
+            <h2>Please write your name</h2>
+            <input type="text" placeholder="Write your name and Press enter" />
+          </form>
+          <div class="main-box__todo">
+            <form id="main-box__submit">
+              <h1></h1>
+              <h3>Please write a To-Do List</h3>
+              <input type="text" placeholder="Write a To-Do and Press enter" />
+            </form>
+            <div class="main-box__todolist">
+              <img src="img/todo-init.png" />
+            </div>
+          </div>
+        </div>
         <div class="bottom-box"></div>
       </div>
       <div class="main-col">
@@ -42,5 +57,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="javascript/background.js"></script>
+    <script src="javascript/user-name.js"></script>
   </body>
 </html>
