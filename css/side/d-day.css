@@ -79,6 +79,11 @@
     align-items: center;
     height: 5vmin;
     margin-top: 1vmin;
+    border-radius: 5px;
+}
+.d-day:hover {
+    box-shadow: var(--btn-shadow);
+    cursor: pointer;
 }
 
 .d-day__countdown {

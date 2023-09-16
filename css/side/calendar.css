@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 21vmax;
   padding-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.7);
 }
@@ -82,6 +81,6 @@
   border: none;
 }
 
-.calendar-date__click {
-  border: 1px solid #ff8585;
+.calendar-date__event {
+  border: 1px solid red;
 }

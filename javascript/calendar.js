@@ -77,19 +77,52 @@ const init = {
     const date = init.date;
     init.setYearMonth(date);
     init.setDates(date);
-    if (date.getMonth() === init.today.getMonth()) {
-      init.setToday();
+    if (date.getMonth() === init.today.getMonth() && date.getFullYear() === init.today.getFullYear()) {
+      init.addClassToday(init.findToday(init.today));
     }
+    init.checkDdayList();
   },
-  setToday : function () {
-    const firstDay = new Date(init.today.getFullYear(), init.today.getMonth(), 1).getDay();
-    const week = Math.ceil((init.today.getDate()+firstDay) / 7);
-    let day = (init.today.getDate()%7) + firstDay;
+  findToday : function (date) {
+    const thisDay = date;
+    const firstDay = new Date(thisDay.getFullYear(), thisDay.getMonth(), 1).getDay();
+    const week = Math.ceil((thisDay.getDate()+firstDay) / 7);
+    let day = (thisDay.getDate()%7) + firstDay;
 
     if(day > 7) {day = day-7;}
     
     const today = document.querySelector(`.calendar-date>div:nth-child(${week})>div:nth-child(${day})`)
+    return today;
+  },
+  addClassToday : function(today) {
     today.classList.add("calendar-date__today");
+  },
+  checkDdayList : function() {
+    const thisYear = init.date.getFullYear();
+    const thisMonth = init.date.getMonth();
+
+    let savedData = localStorage.getItem("dayList");
+    if (savedData !== null) {
+      savedData = JSON.parse(savedData);
+    }
+
+    const thisDday= savedData.filter(d => { 
+      const event = new Date(d.dayDate);
+      if (event.getFullYear() === thisYear && event.getMonth() === thisMonth){
+        return true;
+      } else {
+        return false;
+      }
+    })
+
+    if (thisDday.length !== 0) {
+      init.paintDday(thisDday);
+    }
+  },
+  paintDday : function(thisDday) {
+    thisDday.map(d => {
+      const dDay = init.findToday(new Date(d.dayDate));
+      dDay.classList.add("calendar-date__event");
+    })
   }
 };
 
