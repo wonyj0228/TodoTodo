@@ -13,6 +13,9 @@
 @import './main/user-name.css';
 @import './main/todo-submit.css';
 
+/* side-box */
+@import './side/calendar.css';
+
 body {
   font-family: 'PT Sans', sans-serif;
   padding: 0 10vw;

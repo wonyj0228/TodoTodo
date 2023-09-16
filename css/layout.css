@@ -20,7 +20,8 @@ main {
 
 .side-box {
   width: 20vw;
-  height: 100%;
+  height: 71vh;
+  padding: 5vh 1.5vw;
 }
 
 .bottom-box {

@@ -48,7 +48,33 @@
         <div class="bottom-box"></div>
       </div>
       <div class="main-col">
-        <div class="side-box"></div>
+        <div class="side-box">
+          <!-- calendar -->
+          <div class="calendar">
+            <!-- 연도, 월 -->
+            <nav class="calendar-yearmonth">
+              <div class="calendar-yearmonth__btn">
+                <i class="fa-solid fa-arrow-left"></i>
+              </div>
+              <div class="calendar-yearmonth__col"></div>
+              <div class="calendar-yearmonth__btn">
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </nav>
+            <!-- 요일 -->
+            <div class="calendar-days">
+              <div class="calendar-day"><span>S</span></div>
+              <div class="calendar-day"><span>M</span></div>
+              <div class="calendar-day"><span>T</span></div>
+              <div class="calendar-day"><span>W</span></div>
+              <div class="calendar-day"><span>T</span></div>
+              <div class="calendar-day"><span>F</span></div>
+              <div class="calendar-day"><span>S</span></div>
+            </div>
+            <!-- 일자 -->
+            <div class="calendar-date"></div>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -58,5 +84,6 @@
     ></script>
     <script src="javascript/background.js"></script>
     <script src="javascript/user-name.js"></script>
+    <script src="javascript/calendar.js"></script>
   </body>
 </html>
