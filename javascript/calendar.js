@@ -84,7 +84,9 @@ const init = {
   setToday : function () {
     const firstDay = new Date(init.today.getFullYear(), init.today.getMonth(), 1).getDay();
     const week = Math.ceil((init.today.getDate()+firstDay) / 7);
-    const day = (init.today.getDate()%7) + firstDay;
+    let day = (init.today.getDate()%7) + firstDay;
+
+    if(day > 7) {day = day-7;}
     
     const today = document.querySelector(`.calendar-date>div:nth-child(${week})>div:nth-child(${day})`)
     today.classList.add("calendar-date__today");

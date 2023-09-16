@@ -74,6 +74,26 @@
             <!-- 일자 -->
             <div class="calendar-date"></div>
           </div>
+
+          <div class="add-day">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+
+          <form class="day-submit">
+            <div class="day-submit__info">
+              <input id="day-name" type="text" placeholder="What day is it?" />
+              <input id="day-date" type="date"/>
+            </div>
+            <div class="day-submit__btn">
+              <div class="day-submit__btn-col"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="day-submit__btn-col"><i class="fa-solid fa-circle-xmark"></i></div>
+            </div>
+          </form>
+
+          <div class="d-day">
+            <div class="d-day__countdown"><span></span></div>
+            <div class="d-day__name"><span></span></div>
+          </div>
         </div>
       </div>
     </main>
@@ -85,5 +105,6 @@
     <script src="javascript/background.js"></script>
     <script src="javascript/user-name.js"></script>
     <script src="javascript/calendar.js"></script>
+    <script src="javascript/d-day.js"></script>
   </body>
 </html>

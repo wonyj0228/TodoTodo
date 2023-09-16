@@ -20,6 +20,7 @@
   background-color: var(--btn-yellow);
   padding: 15px;
   border-radius: 50%;
+  transition: all 0.2s ease-in-out;
 }
 .calendar-yearmonth__btn:hover {
   box-shadow: var(--btn-shadow);

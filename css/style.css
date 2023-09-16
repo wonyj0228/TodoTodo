@@ -15,6 +15,7 @@
 
 /* side-box */
 @import './side/calendar.css';
+@import './side/d-day.css';
 
 body {
   font-family: 'PT Sans', sans-serif;
