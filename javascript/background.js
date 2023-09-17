@@ -12,7 +12,7 @@ const imgArray = [
 
 function makeRandomImg() {
   const img = imgArray[Math.floor(Math.random() * imgArray.length)];
-  bgImg.src = '/img/' + img;
+  bgImg.src = 'img/' + img;
 }
 
 makeRandomImg();
