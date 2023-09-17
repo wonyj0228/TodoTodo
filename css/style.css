@@ -17,6 +17,10 @@
 @import './side/calendar.css';
 @import './side/d-day.css';
 
+/* bottom-box */
+@import './bottom/clock-weather.css';
+@import './bottom/quotes.css';
+
 body {
   font-family: 'PT Sans', sans-serif;
   padding: 0 10vw;

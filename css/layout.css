@@ -14,7 +14,7 @@ main {
 
 .main-box {
   width: 55vw;
-  height: 45vh;
+  height: 46vh;
   margin-bottom: 4vh;
 }
 
@@ -26,7 +26,9 @@ main {
 
 .bottom-box {
   width: 55vw;
-  height: 32vh;
+  height: 31vh;
+  padding: 3vh 2vw;
+  box-sizing: border-box;
 }
 
 .main-col {
