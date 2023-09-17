@@ -30,9 +30,8 @@
 
 #main-box__submit input {
   margin-top: 12vmin;
-  height: 30px;
   width: 100%;
-  font-size: 17px;
+  font-size: 1.6vmax;
   background-color: unset;
   border: unset;
   border-bottom: 2px solid rgba(0, 0, 0, 0.7);
@@ -44,10 +43,12 @@
 }
 
 .main-box__todolist {
-  width: 55%;
-  height: 100%;
+  width: 28vmax;
+  height: inherit;
   display: flex;
   justify-content: center;
+  padding: 2vmin 2vmax;
+  box-sizing: border-box;
 }
 
 .main-box__todolist img {

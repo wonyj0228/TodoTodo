@@ -41,7 +41,63 @@
               <input type="text" placeholder="Write a To-Do and Press enter" />
             </form>
             <div class="main-box__todolist">
-              <img src="img/todo-init.png" />
+              <img src="img/todo-init.png" class="display-none" />
+              <form class="todo-list__box">
+                <div class="todo-list__status-row">
+                  <div class="todo-list__status">
+                    <div class="todo-list__status-col">Status</div>
+                    <div class="todo-list__status-col">1 / 4</div>
+                  </div>
+                  <div class="todo-list__dlt-all"><span>Delete All</span></div>
+                </div>
+                <div class="todo-list__todos">
+                  <div class="todo-list__todo">
+                    <div class="todo-color"></div>
+                    <div class="todo-name"><span>React Study</span></div>
+                    <div class="todo-btn">
+                      <div class="todo-btn__todo-toggle">
+                        <input
+                          type="checkbox"
+                          id="toggle1"
+                          class="toggleChk"
+                          hidden
+                        />
+                        <!-- id 선언시 1,2,3,4 필요함 -->
+                        <label for="toggle1" class="toggleSwitch">
+                          <span class="toggleButton"></span>
+                        </label>
+                      </div>
+                      <div class="todo-btn__dlt-each display-none">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="todo-list__todo">
+                    <div class="todo-color"></div>
+                    <div class="todo-name"><span>React Study</span></div>
+                    <div class="todo-btn">
+                      <div class="todo-btn__todo-toggle">
+                        <input
+                          type="checkbox"
+                          id="toggle2"
+                          class="toggleChk"
+                          hidden
+                        />
+                        <!-- id 선언시 1,2,3,4 필요함 -->
+                        <label for="toggle2" class="toggleSwitch">
+                          <span class="toggleButton"></span>
+                        </label>
+                      </div>
+                      <div class="todo-btn__dlt-each display-none">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="todo-list__delete-btn">
+                  <i class="fa-solid fa-trash-can"></i><span>DELETE</span>
+                </button>
+              </form>
             </div>
           </div>
         </div>
