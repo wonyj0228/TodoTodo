@@ -104,12 +104,16 @@ function paintDay(dDay) {
   div.appendChild(div2);
   div.appendChild(div3);
   dDayShow.appendChild(div);
+
   div.addEventListener('dblclick', deleteDay);
   div.addEventListener('click', settingCalendar);
+
+  init.checkDdayList();
 }
 
 function countingDate(date) {
   const target = new Date(date);
+  target.setHours(23, 59, 59);
   const diff = target - init.today;
   const diffDay = Math.floor(diff / (1000 * 60 * 60 * 24));
 
@@ -128,6 +132,11 @@ function deleteDay(e) {
   const result = confirm('디데이를 삭제하시겠습니까?');
   if (result) {
     const target = e.currentTarget;
+
+    const removeDay = dayList.filter((x) => x.id === target.id)[0];
+    const removeCalendarDay = init.findToday(new Date(removeDay.dayDate));
+    removeCalendarDay.classList.remove('calendar-date__event');
+
     dayList = dayList.filter((x) => x.id !== target.id);
     localStorage.setItem(DAYLISTKEY, JSON.stringify(dayList));
     target.remove();
