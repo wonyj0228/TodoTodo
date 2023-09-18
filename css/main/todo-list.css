@@ -3,7 +3,6 @@
   flex-direction: column;
   width: inherit;
   height: inherit;
-  justify-content: space-between;
 }
 
 .todo-list__status-row {
@@ -60,6 +59,13 @@
   margin-top: 1.5vmin;
 }
 
+.todo-create {
+  color: black;
+}
+.todo-delete {
+  color: rgb(188, 0, 0);
+}
+
 .todo-list__delete-btn i {
   margin-right: 10px;
 }
@@ -104,11 +110,12 @@
 
 .todo-name {
   color: rgb(36, 35, 35);
-  font-weight: 800;
-  font-size: 1.5vmax;
-  font-family: 'Anton', sans-serif;
+  font-weight: 100;
+  font-size: 1.2vmax;
+  font-family: 'Anton', 'Black Han Sans';
   width: 65%;
   margin-left: 1vmax;
+  letter-spacing: 0.1em;
 }
 .todo-btn__todo-toggle {
   display: flex;
@@ -116,7 +123,7 @@
 }
 
 .toggleSwitch {
-  width: 5vmax;
+  width: 4vmax;
   height: 3vmin;
   display: block;
   position: relative;
@@ -128,7 +135,7 @@
 }
 
 .toggleSwitch .toggleButton {
-  width: 3vmax;
+  width: 2vmax;
   height: inherit;
   position: absolute;
   top: 50%;
@@ -140,7 +147,7 @@
 }
 
 .toggleChk:checked ~ .toggleSwitch .toggleButton {
-  left: calc(100% - 3vmax);
+  left: calc(100% - 2vmax);
 }
 
 .toggleChk:checked ~ .toggleSwitch {
@@ -148,8 +155,16 @@
 }
 
 .todo-btn__dlt-each {
+  width: 5vmax;
+  display: flex;
+  justify-content: flex-end;
   font-size: 1.5vmax;
   color: brown;
+}
+
+.todo-btn__dlt-each i {
+  padding-right: 1vmax;
+  cursor: pointer;
 }
 
 .todo-name__done {
@@ -158,4 +173,44 @@
 
 .todo-list__todo-done {
   background-color: #888888;
+}
+
+.color1 {
+  background-color: #ffd966;
+}
+.color2 {
+  background-color: #0070c0;
+}
+.color3 {
+  background-color: #00b050;
+}
+.color4 {
+  background-color: #ff3300;
+}
+.color5 {
+  background-color: #c1121f;
+}
+.color6 {
+  background-color: #8d0801;
+}
+.color7 {
+  background-color: #669bbc;
+}
+.color8 {
+  background-color: #6a994e;
+}
+.color9 {
+  background-color: #003049;
+}
+.color10 {
+  background-color: #bf0603;
+}
+.color11 {
+  background-color: #f4d58d;
+}
+.color12 {
+  background-color: #cfbaf0;
+}
+.color13 {
+  background-color: #b9fbc0;
 }
