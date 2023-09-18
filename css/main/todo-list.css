@@ -59,6 +59,13 @@
   margin-top: 1.5vmin;
 }
 
+.todo-create {
+  color: black;
+}
+.todo-delete {
+  color: rgb(188, 0, 0);
+}
+
 .todo-list__delete-btn i {
   margin-right: 10px;
 }
@@ -103,11 +110,12 @@
 
 .todo-name {
   color: rgb(36, 35, 35);
-  font-weight: 800;
-  font-size: 1.5vmax;
-  font-family: 'Anton', sans-serif;
+  font-weight: 100;
+  font-size: 1.2vmax;
+  font-family: 'Anton', 'Black Han Sans';
   width: 65%;
   margin-left: 1vmax;
+  letter-spacing: 0.1em;
 }
 .todo-btn__todo-toggle {
   display: flex;
@@ -115,7 +123,7 @@
 }
 
 .toggleSwitch {
-  width: 5vmax;
+  width: 4vmax;
   height: 3vmin;
   display: block;
   position: relative;
@@ -127,7 +135,7 @@
 }
 
 .toggleSwitch .toggleButton {
-  width: 3vmax;
+  width: 2vmax;
   height: inherit;
   position: absolute;
   top: 50%;
@@ -139,7 +147,7 @@
 }
 
 .toggleChk:checked ~ .toggleSwitch .toggleButton {
-  left: calc(100% - 3vmax);
+  left: calc(100% - 2vmax);
 }
 
 .toggleChk:checked ~ .toggleSwitch {
@@ -147,8 +155,16 @@
 }
 
 .todo-btn__dlt-each {
+  width: 5vmax;
+  display: flex;
+  justify-content: flex-end;
   font-size: 1.5vmax;
   color: brown;
+}
+
+.todo-btn__dlt-each i {
+  padding-right: 1vmax;
+  cursor: pointer;
 }
 
 .todo-name__done {

@@ -7,6 +7,8 @@ const todo = {
   todoList: document.querySelector('.todo-list__todos'),
   todoDefaultImg: document.querySelector('.main-box__todolist img'),
   todoStatus: document.querySelector('.todo-list__status-col:nth-child(2)'),
+  todoDltBtn: document.querySelector('.todo-list__delete-btn'),
+  todoDltAll: document.querySelector('.todo-list__dlt-all'),
   todoColor: [
     'color1',
     'color2',
@@ -53,7 +55,21 @@ const todo = {
 
     const todoBtn = document.createElement('div');
     todoBtn.className = 'todo-btn';
-    todoBtn.innerHTML = `<div class="todo-btn__todo-toggle"><input type="checkbox" id=${todoObj.id} class="toggleChk" value=${todoObj.todoDone} hidden /><label for=${todoObj.id} class="toggleSwitch"><span class="toggleButton"></span></label></div><div class="todo-btn__dlt-each display-none"><i class="fa-solid fa-trash-can"></i></div>`;
+
+    // mode에 따라 삭제/토글 display
+    let toggleHtml;
+    let dltHtml;
+    if (
+      todo.todoDltBtn.querySelector('span:nth-child(1)').classList.length === 1
+    ) {
+      toggleHtml = `<div class="todo-btn__todo-toggle"><input type="checkbox" id=${todoObj.id} class="toggleChk" value=${todoObj.todoDone} hidden /><label for=${todoObj.id} class="toggleSwitch"><span class="toggleButton"></span></label></div>`;
+      dltHtml = `<div class="todo-btn__dlt-each display-none"><i class="fa-solid fa-trash-can"></i></div>`;
+    } else {
+      toggleHtml = `<div class="todo-btn__todo-toggle  display-none"><input type="checkbox" id=${todoObj.id} class="toggleChk" value=${todoObj.todoDone} hidden /><label for=${todoObj.id} class="toggleSwitch"><span class="toggleButton"></span></label></div>`;
+      dltHtml = `<div class="todo-btn__dlt-each"><i class="fa-solid fa-trash-can"></i></div>`;
+    }
+
+    todoBtn.innerHTML = toggleHtml + dltHtml;
     todoDiv.appendChild(todoColor);
     todoDiv.appendChild(todoName);
     todoDiv.appendChild(todoBtn);
@@ -63,9 +79,15 @@ const todo = {
       todo.togglePaint(todoObj.id, 1);
     }
 
+    // 토글 클릭 이벤트
     todoDiv
       .querySelector('.todo-btn__todo-toggle input')
       .addEventListener('click', todo.toggleCheck);
+
+    todoDiv
+      .querySelector('.todo-btn__dlt-each i')
+      .addEventListener('click', todo.dltEach);
+
     todo.updateState();
   },
   randomColor: function () {
@@ -74,7 +96,7 @@ const todo = {
   },
   readToDo: function () {
     const savedJson = JSON.parse(localStorage.getItem(TODO_SAVE_KEY));
-    if (savedJson) {
+    if (savedJson && savedJson.length !== 0) {
       todoArr = savedJson;
       todoArr.forEach(todo.paintToDo);
     } else {
@@ -83,7 +105,7 @@ const todo = {
     }
   },
   firstToDoCheck: function () {
-    if (todoArr.length !== 0) {
+    if (todoArr && todoArr.length !== 0) {
       todo.todoListBox.classList.remove('display-none');
       todo.todoDefaultImg.classList.add('display-none');
     } else {
@@ -131,13 +153,54 @@ const todo = {
     arrTarget[0].todoDone = parseInt(target.value);
     localStorage.setItem(TODO_SAVE_KEY, JSON.stringify(todoArr));
   },
-  changeDeleteMode: function (e) {
+  changeMode: function (e) {
     e.preventDefault();
 
-    todoToggleBox.forEach((element) => element.classList.add('display-none'));
-    todoDltEachBox.forEach((element) =>
-      element.classList.remove('display-none')
+    const todoToggleBox = document.querySelectorAll('.todo-btn__todo-toggle');
+    const todoDltEachBox = document.querySelectorAll('.todo-btn__dlt-each');
+
+    const dltSpan = e.submitter.querySelector('span:nth-child(1)');
+    const backSpan = e.submitter.querySelector('span:nth-child(2)');
+
+    if (dltSpan.classList.length === 1) {
+      todoToggleBox.forEach((element) => element.classList.add('display-none'));
+      todoDltEachBox.forEach((element) =>
+        element.classList.remove('display-none')
+      );
+      dltSpan.classList.add('display-none');
+      backSpan.classList.remove('display-none');
+    } else {
+      todoToggleBox.forEach((element) =>
+        element.classList.remove('display-none')
+      );
+      todoDltEachBox.forEach((element) =>
+        element.classList.add('display-none')
+      );
+      dltSpan.classList.remove('display-none');
+      backSpan.classList.add('display-none');
+    }
+  },
+  dltEach: function (e) {
+    const comId = e.target.parentElement.parentElement.querySelector(
+      'div:first-child input'
     );
+    const todoComp = e.target.parentElement.parentElement.parentElement;
+    todoArr = todoArr.filter((obj) => obj.id !== parseInt(comId.id));
+    localStorage.setItem(TODO_SAVE_KEY, JSON.stringify(todoArr));
+    todoComp.remove();
+
+    if (todoArr.length === 0) {
+      todo.todoListBox.classList.add('display-none');
+      todo.todoDefaultImg.classList.remove('display-none');
+    }
+  },
+  removeAll: function (e) {
+    const todolists = document.querySelectorAll('.todo-list__todo');
+    todolists.forEach((x) => x.remove());
+    localStorage.removeItem(TODO_SAVE_KEY);
+    todoArr.length = 0;
+    todo.todoListBox.classList.add('display-none');
+    todo.todoDefaultImg.classList.remove('display-none');
   },
 };
 
@@ -149,7 +212,5 @@ todoToggles.forEach((element) => {
   element.addEventListener('click', todo.toggleCheck);
 });
 
-const todoToggleBox = document.querySelectorAll('.todo-btn__todo-toggle');
-const todoDltEachBox = document.querySelectorAll('.todo-btn__dlt-each');
-
-todo.todoListBox.addEventListener('submit', todo.changeDeleteMode);
+todo.todoListBox.addEventListener('submit', todo.changeMode);
+todo.todoDltAll.addEventListener('click', todo.removeAll);
