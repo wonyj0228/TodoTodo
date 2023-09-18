@@ -6,6 +6,7 @@ const todo = {
   todoListBox: document.querySelector('.todo-list__box'),
   todoList: document.querySelector('.todo-list__todos'),
   todoDefaultImg: document.querySelector('.main-box__todolist img'),
+  todoStatus: document.querySelector('.todo-list__status-col:nth-child(2)'),
   todoColor: [
     'color1',
     'color2',
@@ -56,8 +57,16 @@ const todo = {
     todoDiv.appendChild(todoColor);
     todoDiv.appendChild(todoName);
     todoDiv.appendChild(todoBtn);
-
     todo.todoList.appendChild(todoDiv);
+
+    if (todoObj.todoDone === 1) {
+      todo.togglePaint(todoObj.id, 1);
+    }
+
+    todoDiv
+      .querySelector('.todo-btn__todo-toggle input')
+      .addEventListener('click', todo.toggleCheck);
+    todo.updateState();
   },
   randomColor: function () {
     const randomNum = Math.floor(Math.random() * 13);
@@ -82,7 +91,65 @@ const todo = {
       todo.todoDefaultImg.classList.remove('display-none');
     }
   },
+  updateState: function () {
+    const total = todoArr.length;
+    const checked = todoArr.filter((todo) => todo.todoDone === 1);
+    todo.todoStatus.innerText = `${checked.length} / ${total}`;
+  },
+  toggleCheck: function (event) {
+    const tf = parseInt(event.target.value);
+    if (tf) {
+      event.target.value = '0';
+    } else {
+      event.target.value = '1';
+    }
+    todo.togglePaint(parseInt(event.target.id), parseInt(event.target.value));
+    todo.toggleSave(event.target);
+    todo.updateState();
+  },
+  togglePaint: function (targetId, value) {
+    const idx = todoArr.findIndex((obj) => obj.id === targetId) + 1;
+    const box = document.querySelector(`.todo-list__todo:nth-child(${idx})`);
+    const name = document.querySelector(
+      `.todo-list__todo:nth-child(${idx}) .todo-name span`
+    );
+    const input = document.querySelector(
+      `.todo-list__todo:nth-child(${idx}) .todo-btn input`
+    );
+    input.click();
+
+    if (value) {
+      box.classList.add('todo-list__todo-done');
+      name.classList.add('todo-name__done');
+    } else {
+      box.classList.remove('todo-list__todo-done');
+      name.classList.remove('todo-name__done');
+    }
+  },
+  toggleSave: function (target) {
+    const arrTarget = todoArr.filter((arr) => String(arr.id) === target.id);
+    arrTarget[0].todoDone = parseInt(target.value);
+    localStorage.setItem(TODO_SAVE_KEY, JSON.stringify(todoArr));
+  },
+  changeDeleteMode: function (e) {
+    e.preventDefault();
+
+    todoToggleBox.forEach((element) => element.classList.add('display-none'));
+    todoDltEachBox.forEach((element) =>
+      element.classList.remove('display-none')
+    );
+  },
 };
 
 todo.readToDo();
 todo.todoForm.addEventListener('submit', todo.saveToDo);
+
+const todoToggles = document.querySelectorAll('.todo-btn__todo-toggle input');
+todoToggles.forEach((element) => {
+  element.addEventListener('click', todo.toggleCheck);
+});
+
+const todoToggleBox = document.querySelectorAll('.todo-btn__todo-toggle');
+const todoDltEachBox = document.querySelectorAll('.todo-btn__dlt-each');
+
+todo.todoListBox.addEventListener('submit', todo.changeDeleteMode);
