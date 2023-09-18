@@ -9,6 +9,7 @@ const todo = {
   todoStatus: document.querySelector('.todo-list__status-col:nth-child(2)'),
   todoDltBtn: document.querySelector('.todo-list__delete-btn'),
   todoDltAll: document.querySelector('.todo-list__dlt-all'),
+  resetComp: document.querySelector('.reset'),
   todoColor: [
     'color1',
     'color2',
@@ -194,13 +195,18 @@ const todo = {
       todo.todoDefaultImg.classList.remove('display-none');
     }
   },
-  removeAll: function (e) {
+  removeAll: function () {
     const todolists = document.querySelectorAll('.todo-list__todo');
     todolists.forEach((x) => x.remove());
     localStorage.removeItem(TODO_SAVE_KEY);
     todoArr.length = 0;
     todo.todoListBox.classList.add('display-none');
     todo.todoDefaultImg.classList.remove('display-none');
+  },
+  resetAll: function () {
+    todo.removeAll();
+    localStorage.removeItem('userName');
+    userNameInit();
   },
 };
 
@@ -214,3 +220,4 @@ todoToggles.forEach((element) => {
 
 todo.todoListBox.addEventListener('submit', todo.changeMode);
 todo.todoDltAll.addEventListener('click', todo.removeAll);
+todo.resetComp.addEventListener('click', todo.resetAll);

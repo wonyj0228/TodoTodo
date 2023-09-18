@@ -27,11 +27,15 @@ function submitUsername(event) {
   saveUsername(userName);
 }
 
-const localUsername = localStorage.getItem('userName');
+function userNameInit() {
+  const localUsername = localStorage.getItem('userName');
 
-if (!localUsername) {
-  submitUsernameDisplay();
-  submitForm.addEventListener('submit', submitUsername);
-} else {
-  todoDisplay(localUsername);
+  if (!localUsername) {
+    submitUsernameDisplay();
+    submitForm.addEventListener('submit', submitUsername);
+  } else {
+    todoDisplay(localUsername);
+  }
 }
+
+userNameInit();
