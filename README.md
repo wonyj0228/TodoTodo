@@ -26,6 +26,7 @@ Local Storage를 사용해 데이터를 save/load 하는 방식으로 구현 되
 - Stack : <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/> <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/>
 - SCM : <img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=github&logoColor=white"/>
 
+
 ### 📌 주요 기능
 -------------
 | # | Main Category | Function | Detail |
